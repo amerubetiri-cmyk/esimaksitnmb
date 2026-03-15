@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+E-Simaksi TNMB
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-background: #0f172a;
+      --color-surface: #1e293b;
+      --color-text: #f1f5f9;
+      --color-primary: #10b981;
+      --color-secondary: #0ea5e9;
+    }
+    .font-display { font-family: 'Playfair Display', serif; }
+    .font-body { font-family: 'Outfit', sans-serif; }
+    .gradient-hero {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+    }
+    .card-glow {
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.1);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+    .animate-delay-1 { animation-delay: 0.1s; }
+    .animate-delay-2 { animation-delay: 0.2s; }
+    .animate-delay-3 { animation-delay: 0.3s; }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body" style="background-image: url('https://merubetiri.id/assets/filegaleri/img-galeri_1501818487.jpg'); background-attachment: fixed; background-size: cover; background-position: center; color: var(--color-text);">
+  <div class="fixed inset-0 bg-black/60 pointer-events-none z-0"></div>
+  <div id="app" class="w-full h-full overflow-auto relative z-10"><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-opacity-80" style="background-color: rgba(15, 23, 42, 0.9);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-16">
+      <div class="flex items-center gap-3 flex-shrink-0">
+       <img src="https://merubetiri.id/assets/image-konten/img-konten_1689561313.jpg" alt="E-Simaksi Logo" class="w-10 h-10 rounded-full object-cover" loading="lazy" onerror="console.error('Logo failed to load:', this.src); this.style.background='linear-gradient(135deg, var(--color-primary), var(--color-secondary))'; this.innerHTML='<span class=\'font-display font-bold text-white text-lg\'>V</span>';"> <span id="nav-title" class="font-display font-bold text-lg">E-Simaksi Meru Betiri</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 justify-center flex-1"><!-- Beranda Dropdown -->
+       <div class="relative group"><button class="text-sm hover:text-emerald-400 transition-colors whitespace-nowrap flex items-center gap-1"> Beranda <i data-lucide="chevron-down" class="w-4 h-4"></i> </button>
+        <div class="absolute left-0 mt-0 w-56 bg-slate-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 border border-slate-700"><a href="#tata-cara" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Tata Cara Pengajuan</a> <a href="#syarat" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Persyaratan</a> <a href="#alur-tarif" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Alur dan Tarif</a> <a href="#alur-penerbitan" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Alur Penerbitan</a> <a href="#tarif-masuk" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Tarif Masuk</a>
+         <hr class="border-slate-700 my-1"><a href="#status" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Status</a> <a href="#cek-permohonan" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Cek Permohonan</a> <a href="#statistik" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Statistik Data</a>
+        </div>
+       </div><!-- Simaksi Dropdown -->
+       <div class="relative group"><button class="text-sm hover:text-emerald-400 transition-colors whitespace-nowrap flex items-center gap-1"> Simaksi <i data-lucide="chevron-down" class="w-4 h-4"></i> </button>
+        <div class="absolute left-0 mt-0 w-56 bg-slate-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 border border-slate-700"><a href="#simaksi-penelitian" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Penelitian</a> <a href="#simaksi-pendidikan" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Pendidikan</a> <a href="#simaksi-film" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Pembuatan Film/Foto/Video</a> <a href="#simaksi-religi" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Religi</a> <a href="#simaksi-sosial" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Sosial</a> <a href="#simaksi-ekspedisi" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Ekspedisi dan Jurnalistik</a>
+        </div>
+       </div><!-- Registrasi Dropdown -->
+       <div class="relative group"><button class="text-sm hover:text-emerald-400 transition-colors whitespace-nowrap flex items-center gap-1"> Registrasi <i data-lucide="chevron-down" class="w-4 h-4"></i> </button>
+        <div class="absolute left-0 mt-0 w-56 bg-slate-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 border border-slate-700"><a href="#akun" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Akun</a> <a href="#masuk" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Masuk</a> <a href="#daftar" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Daftar</a> <a href="#general" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">General</a> <a href="#reset-password" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">Reset Password</a> <a href="#faq" class="block px-4 py-2 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">FAQ</a>
+        </div>
+       </div><!-- Dokumen Dropdown -->
+       <div class="relative group"><button class="text-sm hover:text-emerald-400 transition-colors whitespace-nowrap flex items-center gap-1"> Dokumen <i data-lucide="chevron-down" class="w-4 h-4"></i> </button>
+        <div class="absolute left-0 mt-0 w-72 bg-slate-800 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2 z-50 border border-slate-700"><a href="#template-proposal" class="block px-4 py-3 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors border-b border-slate-700">
+          <div class="font-semibold">
+           Template Proposal
+          </div>
+          <div class="text-xs text-slate-500 mt-1">
+           Download format/template dokumen
+          </div></a> <a href="#panduan-esimaksi" class="block px-4 py-3 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors border-b border-slate-700">
+          <div class="font-semibold">
+           Panduan E-SIMAKSI
+          </div>
+          <div class="text-xs text-slate-500 mt-1">
+           Download format/template dokumen
+          </div></a> <a href="#template-drone" class="block px-4 py-3 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors border-b border-slate-700">
+          <div class="font-semibold">
+           Template Surat Permohonan Penggunaan Drone
+          </div>
+          <div class="text-xs text-slate-500 mt-1">
+           Download format/template dokumen
+          </div></a> <a href="#formulir-drone" class="block px-4 py-3 text-sm hover:bg-emerald-400/10 hover:text-emerald-400 transition-colors">
+          <div class="font-semibold">
+           Formulir Data Pemohon Izin Penggunaan Drone
+          </div>
+          <div class="text-xs text-slate-500 mt-1">
+           Download format/template dokumen
+          </div></a>
+        </div>
+       </div>
+      </div>
+      <div class="hidden md:flex items-center flex-shrink-0">
+       <button class="px-6 py-2 rounded-lg font-semibold border border-emerald-400 text-emerald-400 hover:bg-emerald-400/10 transition-colors">Login</button>
+      </div><button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-700 transition-colors"> <i data-lucide="menu" class="w-5 h-5"></i> </button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-700">
+     <div class="px-4 py-3 space-y-2"><a href="#beranda" class="block py-2 text-sm hover:text-emerald-400">Beranda</a> <a href="#simaksi" class="block py-2 text-sm hover:text-emerald-400">Simaksi</a> <a href="#riwayat" class="block py-2 text-sm hover:text-emerald-400">Status</a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="beranda" class="relative min-h-screen flex items-center justify-center gradient-hero pt-16">
+    <div class="absolute inset-0 overflow-hidden">
+     <svg class="absolute bottom-0 w-full h-auto opacity-10" viewbox="0 0 1440 320"><path fill="var(--color-primary)" d="M0,192L48,181.3C96,171,192,149,288,160C384,171,480,213,576,218.7C672,224,768,192,864,165.3C960,139,1056,117,1152,128C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+     </svg>
+     <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500 rounded-full filter blur-3xl opacity-10 animate-float"></div>
+     <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-sky-500 rounded-full filter blur-3xl opacity-10 animate-float" style="animation-delay: 3s;"></div>
+    </div>
+    <div class="relative z-10 w-full px-4">
+     <div class="max-w-6xl mx-auto">
+      <div class="text-center">
+       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-sm" style="background-color: var(--color-surface);"><i data-lucide="sparkles" class="w-4 h-4 text-emerald-400"></i> <span>Sistem Perizinan Online</span>
+       </div>
+       <h1 id="hero-title" class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">E-SIMAKSI<br><span class="bg-gradient-to-r from-emerald-400 to-sky-400 bg-clip-text text-transparent" id="park-name-hero">Meru Betiri National Park</span></h1>
+       <p id="hero-tagline" class="text-base sm:text-lg text-slate-300 mb-8 max-w-3xl mx-auto animate-fade-in-up animate-delay-1">Aplikasi Perizinan Masuk Kawasan Konservasi Online (e-SIMAKSI) merupakan aplikasi layanan publik yang digunakan untuk mengajukan permohonan surat izin masuk kawasan konservasi di Meru Betiri National Park.</p>
+       <div class="flex flex-col sm:flex-row gap-4 animate-fade-in-up animate-delay-2 justify-center"><a href="#simaksi" class="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-semibold transition-all transform hover:scale-105" style="background: linear-gradient(135deg, var(--color-primary), #059669);"> <i data-lucide="ticket" class="w-5 h-5"></i> Simaksi </a> <a href="#syarat" class="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-semibold border border-slate-600 hover:border-emerald-400 transition-colors"> <i data-lucide="info" class="w-5 h-5"></i> Persyaratan </a>
+       </div>
+      </div>
+     </div>
+    </div><a href="#simaksi" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"> <i data-lucide="chevron-down" class="w-8 h-8 text-slate-400"></i> </a>
+   </section><!-- Simaksi Categories Section -->
+   <section id="simaksi" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4">Kategori Simaksi</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">Pilih jenis kegiatan perizinan yang Anda butuhkan</p>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      <!-- Penelitian Card -->
+      <div class="rounded-2xl p-6 cursor-pointer transition-all transform hover:scale-105 hover:shadow-lg" style="background-color: var(--color-surface);">
+       <div class="w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
+        <i data-lucide="microscope" class="w-7 h-7 text-white"></i>
+       </div>
+       <h3 class="font-semibold text-center mb-2">PENELITIAN</h3>
+       <p class="text-xs text-slate-400 text-center">Simkasi penelitian dan pengembangan</p>
+      </div><!-- Drone Card -->
+      <div class="rounded-2xl p-6 cursor-pointer transition-all transform hover:scale-105 hover:shadow-lg" style="background-color: var(--color-surface);">
+       <div class="w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #ec4899, #be185d);">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/035/973/216/small/remote-aerial-drone-with-a-camera-taking-photography-or-video-recording-png.png" alt="Drone icon" class="w-7 h-7 object-contain" loading="lazy" onerror="console.error('Drone icon failed:', this.src); this.style.display='none'; const i = document.createElement('i'); i.setAttribute('data-lucide', 'drone'); i.className='w-7 h-7 text-white'; this.parentNode.appendChild(i); lucide.createIcons();">
+       </div>
+       <h3 class="font-semibold text-center mb-2">DRONE</h3>
+       <p class="text-xs text-slate-400 text-center">Simaksi kegiatan penerbangan drone</p>
+      </div><!-- Film Card -->
+      <div class="rounded-2xl p-6 cursor-pointer transition-all transform hover:scale-105 hover:shadow-lg" style="background-color: var(--color-surface);">
+       <div class="w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+        <i data-lucide="camera" class="w-7 h-7 text-white"></i>
+       </div>
+       <h3 class="font-semibold text-center mb-2">FILM</h3>
+       <p class="text-xs text-slate-400 text-center">Simaksi foto, film, video komersil</p>
+      </div><!-- Sosial/Religi Card -->
+      <div class="rounded-2xl p-6 cursor-pointer transition-all transform hover:scale-105 hover:shadow-lg" style="background-color: var(--color-surface);">
+       <div class="w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">
+        <i data-lucide="heart-handshake" class="w-7 h-7 text-white"></i>
+       </div>
+       <h3 class="font-semibold text-center mb-2">SOSIAL/RELIGI</h3>
+       <p class="text-xs text-slate-400 text-center">Simaksi kegiatan sosial dan religi</p>
+      </div><!-- Pendidikan Card -->
+      <div class="rounded-2xl p-6 cursor-pointer transition-all transform hover:scale-105 hover:shadow-lg" style="background-color: var(--color-surface);">
+       <div class="w-14 h-14 rounded-xl mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, var(--color-secondary), #0284c7);">
+        <i data-lucide="book-open" class="w-7 h-7 text-white"></i>
+       </div>
+       <h3 class="font-semibold text-center mb-2">PENDIDIKAN</h3>
+       <p class="text-xs text-slate-400 text-center">Simaksi untuk kegiatan pendidikan</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Procedure Section -->
+   <section id="tata-cara" class="py-20 px-4" style="background-color: var(--color-surface);">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4">Tata Cara Pengajuan E-SIMAKSI</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">Ikuti langkah-langkah berikut untuk mengajukan permohonan E-SIMAKSI</p>
+     </div>
+     <div class="grid lg:grid-cols-2 gap-8"><!-- Steps -->
+      <div class="space-y-6"><!-- Step 1 -->
+       <div class="flex gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg" style="background: linear-gradient(135deg, var(--color-primary), #059669);">
+         1
+        </div>
+        <div>
+         <h3 class="font-semibold text-lg mb-2">Registrasi Online</h3>
+         <p class="text-slate-400 text-sm">Pengguna dapat melakukan registrasi secara online melalui website E-Simaksi TNMB. Anda perlu mengisi informasi dasar seperti nama dan alamat email. Jika sudah memiliki akun maka silahkan LOGIN untuk melakukan pengajuan E-Simaksi.</p>
+        </div>
+       </div><!-- Step 2 -->
+       <div class="flex gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
+         2
+        </div>
+        <div>
+         <h3 class="font-semibold text-lg mb-2">Verifikasi Akun</h3>
+         <p class="text-slate-400 text-sm">Setelah berhasil mendaftar, akan diminta untuk melakukan verifikasi akun melalui email. Anda akan menerima email berupa kode ataupun tautan yang bisa digunakan untuk verifikasi. Konfirmasi ini memastikan keamanan dan validasi informasi sebagai pengguna yang sah.</p>
+        </div>
+       </div><!-- Step 3 -->
+       <div class="flex gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg" style="background: linear-gradient(135deg, #ec4899, #be185d);">
+         3
+        </div>
+        <div>
+         <h3 class="font-semibold text-lg mb-2">Pilih Jenis Kegiatan</h3>
+         <p class="text-slate-400 text-sm">Terdapat beberapa jenis kegiatan yang dapat dipilih untuk pengajuan E-Simaksi, pilih salah satu jenis kegiatan diantaranya Penelitian, Religi, Film, Sosial, Pendidikan atau yang lainnya sesuai tujuan pengajuan E-Simaksi agar permohonan Anda dapat diproses dengan tepat.</p>
+        </div>
+       </div><!-- Step 4 -->
+       <div class="flex gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+         4
+        </div>
+        <div>
+         <h3 class="font-semibold text-lg mb-2">Isi Data Permohonan</h3>
+         <p class="text-slate-400 text-sm">Anda diminta untuk mengisi formulir data diri serta detail kegiatan yang akan anda ajukan. Pastikan untuk memberikan informasi yang akurat dan lengkap untuk memudahkan proses permohonan Anda. Jika diperlukan periksa kembali data untuk menghindari kesalahan input.</p>
+        </div>
+       </div><!-- Step 5 -->
+       <div class="flex gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">
+         5
+        </div>
+        <div>
+         <h3 class="font-semibold text-lg mb-2">Persetujuan Form Pernyataan</h3>
+         <p class="text-slate-400 text-sm">Setelah mengisi formulir, Anda diminta untuk menyetujui pernyataan persetujuan yang berisi komitmen untuk mematuhi semua aturan dan regulasi yang berlaku terkait dengan kegiatan yang diajukan. Pastikan membaca dengan seksama dan memahamai persyaratan yang tercantum.</p>
+        </div>
+       </div><!-- Step 6 -->
+       <div class="flex gap-4">
+        <div class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg" style="background: linear-gradient(135deg, var(--color-secondary), #0284c7);">
+         6
+        </div>
+        <div>
+         <h3 class="font-semibold text-lg mb-2">Pengajuan Permohonan</h3>
+         <p class="text-slate-400 text-sm">Setelah semua langkah sebelumnya selesai, Anda dapat mengajukan permohonan. Pastikan kembali semua informasi yang Anda berikan tidak ada kesalahan atau kekurangan yang dapat memperlambat proses persetujuan.</p>
+        </div>
+       </div>
+      </div><!-- Alur Penerbitan Section -->
+      <div class="relative">
+       <h3 class="font-display text-2xl font-bold mb-8">Alur Penerbitan E-SIMAKSI</h3>
+       <div class="space-y-4">
+        <!-- Step 1 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-emerald-400/5" style="border-left: 3px solid var(--color-primary);">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, var(--color-primary), #059669);">
+          1
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Pengajuan</h4>
+          <p class="text-xs text-slate-400">Pemohon mengajukan permohonan izin secara online melalui website E-Simaksi TNMB.</p>
+         </div>
+        </div><!-- Step 2 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-purple-400/5" style="border-left: 3px solid #8b5cf6;">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
+          2
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Kode Registrasi</h4>
+          <p class="text-xs text-slate-400">Pemohon memperoleh kode registrasi setelah berhasil melakukan pengajuan permohonan izin.</p>
+         </div>
+        </div><!-- Step 3 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-pink-400/5" style="border-left: 3px solid #ec4899;">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, #ec4899, #be185d);">
+          3
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Verifikasi</h4>
+          <p class="text-xs text-slate-400">Pengajuan yang telah terkirim akan melalui proses verifikasi dan memungkinkan pengajuan diterima atau ditolak.</p>
+         </div>
+        </div><!-- Step 4 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-amber-400/5" style="border-left: 3px solid #f59e0b;">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          4
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Penjadwalan</h4>
+          <p class="text-xs text-slate-400">Pemohon diminta mengkonfirmasi jadwal yang ada untuk presentasi setelah pengajuan disetujui.</p>
+         </div>
+        </div><!-- Step 5 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-teal-400/5" style="border-left: 3px solid #14b8a6;">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">
+          5
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Presentasi</h4>
+          <p class="text-xs text-slate-400">Pemohon melakukan presentasi kegiatan secara online ataupun offline sesuai jadwal yang terkonfirmasi.</p>
+         </div>
+        </div><!-- Step 6 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-sky-400/5" style="border-left: 3px solid var(--color-secondary);">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, var(--color-secondary), #0284c7);">
+          6
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Pembayaran</h4>
+          <p class="text-xs text-slate-400">Pemohon melakukan pembayaran PNBP (Penerimaan Negara Bukan Pajak) sejumlah tagihan.</p>
+         </div>
+        </div><!-- Step 7 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-indigo-400/5" style="border-left: 3px solid #6366f1;">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+          7
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Paraf</h4>
+          <p class="text-xs text-slate-400">Pemohon melakukan tanda tangan elektronik dan mengunggah dokumen yang telah dibubuhkan e-materai.</p>
+         </div>
+        </div><!-- Step 8 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-rose-400/5" style="border-left: 3px solid #f43f5e;">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, #f43f5e, #e11d48);">
+          8
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Penerbitan</h4>
+          <p class="text-xs text-slate-400">Setelah semua langkah sebelumnya selesai dilakukan maka proses penerbitan SIMAKSI dilakukan.</p>
+         </div>
+        </div><!-- Step 9 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-green-400/5" style="border-left: 3px solid #16a34a;">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, #16a34a, #15803d);">
+          9
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Pelaksanaan</h4>
+          <p class="text-xs text-slate-400">Pemohon dapat melakukan perpanjangan SIMAKSI dengan melakukan pengajuan perpanjangan.</p>
+         </div>
+        </div><!-- Step 10 -->
+        <div class="flex gap-4 p-4 rounded-xl transition-all hover:bg-blue-400/5" style="border-left: 3px solid #2563eb;">
+         <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style="background: linear-gradient(135deg, #2563eb, #1d4ed8);">
+          10
+         </div>
+         <div>
+          <h4 class="font-semibold mb-1">Pelaporan</h4>
+          <p class="text-xs text-slate-400">Pemohon mengunggah laporan hasil kegiatan berupa dokumen melalui website E-Simaksi TNMB.</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Requirements Section -->
+   <section id="syarat" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4">Syarat dan Ketentuan</h2>
+      <p class="text-slate-400 max-w-2xl mx-auto">Persyaratan yang harus dipenuhi untuk pengajuan E-SIMAKSI</p>
+     </div><!-- Tab Buttons -->
+     <div class="flex justify-center mb-12 gap-4 flex-wrap"><button id="tab-wni" class="px-6 sm:px-8 py-3 rounded-xl font-semibold transition-all" style="background: linear-gradient(135deg, var(--color-primary), #059669);"> Warga Negara Indonesia (WNI) </button> <button id="tab-wna" class="px-6 sm:px-8 py-3 rounded-xl font-semibold border border-slate-600 hover:border-emerald-400 transition-colors"> Foreign National (WNA) </button>
+     </div>
+     <script>
+      document.getElementById('tab-wni').addEventListener('click', function() {
+        document.getElementById('wni-content').classList.remove('hidden');
+        document.getElementById('wna-content').classList.add('hidden');
+        this.style.background = 'linear-gradient(135deg, var(--color-primary), #059669)';
+        this.style.borderColor = 'transparent';
+        document.getElementById('tab-wna').style.background = 'transparent';
+        document.getElementById('tab-wna').style.borderColor = '#64748b';
+      });
+      
+      document.getElementById('tab-wna').addEventListener('click', function() {
+        document.getElementById('wna-content').classList.remove('hidden');
+        document.getElementById('wni-content').classList.add('hidden');
+        this.style.background = 'linear-gradient(135deg, var(--color-primary), #059669)';
+        this.style.borderColor = 'transparent';
+        document.getElementById('tab-wni').style.background = 'transparent';
+        document.getElementById('tab-wni').style.borderColor = '#64748b';
+      });
+     </script><!-- WNI Requirements -->
+     <div id="wni-content" class="space-y-4 max-w-4xl mx-auto"><!-- Requirement 1 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-emerald-400/20 text-emerald-400"><i data-lucide="file-text" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Surat Pengantar (Surat Permohonan Izin)</h3>
+         <p class="text-sm text-slate-400 mb-3">Surat Permohonan Izin memasuki kawasan konservasi TNMB yang ditujukan kepada Kepala Balai Taman Nasional Meru Betiri.</p>
+         <p class="text-xs text-slate-500">File scan berformat *.PDF dengan ukuran maksimum 3 MB</p>
+        </div>
+       </div>
+      </div><!-- Requirement 2 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-sky-400/20 text-sky-400"><i data-lucide="file-text" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Proposal Rencana Kegiatan</h3>
+         <p class="text-sm text-slate-400 mb-3">Proposal rencana kegiatan yang akan dilaksanakan di kawasan taman nasional.</p>
+         <p class="text-xs text-slate-500">File scan berformat *.PDF dengan ukuran maksimum 3 MB</p>
+        </div>
+       </div>
+      </div><!-- Requirement 3 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-purple-400/20 text-purple-400"><i data-lucide="image" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Foto KTP/KTM/KTS Pemohon</h3>
+         <p class="text-sm text-slate-400 mb-3">Foto KTP, KTM, atau KTS pemohon.</p>
+         <p class="text-xs text-slate-500">File berformat *.JPG dengan ukuran landscape maksimum 1 MB</p>
+        </div>
+       </div>
+      </div><!-- Requirement 4 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-pink-400/20 text-pink-400"><i data-lucide="image" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Kartu Pers (Khusus Kegiatan Jurnalistik)</h3>
+         <p class="text-sm text-slate-400 mb-3">Kartu pers dari lembaga berwenang khusus untuk kegiatan jurnalistik.</p>
+         <p class="text-xs text-slate-500">File berformat *.JPG dengan ukuran landscape maksimum 1 MB</p>
+        </div>
+       </div>
+      </div><!-- Requirement 5 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-amber-400/20 text-amber-400"><i data-lucide="file-check" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Surat Pernyataan</h3>
+         <p class="text-sm text-slate-400 mb-3">Membaca dan siap menyanggupi Surat Pernyataan saat proses penerbitan SIMAKSI.</p>
+         <p class="text-xs text-slate-500"><a href="#" class="text-emerald-400 hover:text-emerald-300">↓ Download Surat Pernyataan</a></p>
+        </div>
+       </div>
+      </div><!-- Requirement 6 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-teal-400/20 text-teal-400"><i data-lucide="stamp" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">E-Materai</h3>
+         <p class="text-sm text-slate-400 mb-3">E-materai Rp. 10.000,00 sebanyak 2 (dua) buah untuk dokumen resmi.</p>
+         <p class="text-xs text-slate-500">Jumlah: 2 (dua) buah</p>
+        </div>
+       </div>
+      </div><!-- Requirement 7 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-indigo-400/20 text-indigo-400"><i data-lucide="credit-card" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Pembayaran PNBP</h3>
+         <p class="text-sm text-slate-400 mb-3">Membayar Pungutan Negara Bukan Pajak (PNBP) yang berlaku di kawasan Taman Nasional Gunung Rinjani sesuai PP Nomor 12 Tahun 2014.</p>
+         <p class="text-xs text-slate-500">Berdasarkan: PP Nomor 12 Tahun 2014</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- WNA Requirements -->
+     <div id="wna-content" class="hidden space-y-4 max-w-4xl mx-auto"><!-- Requirement 1 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-emerald-400/20 text-emerald-400"><i data-lucide="image" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Copy of Passport</h3>
+         <p class="text-sm text-slate-400 mb-3">Salinan halaman identitas paspor Anda yang masih berlaku.</p>
+         <p class="text-xs text-slate-500">Format: PDF/JPG • Max: 3 MB</p>
+        </div>
+       </div>
+      </div><!-- Requirement 2 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-sky-400/20 text-sky-400"><i data-lucide="file-text" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Travelling Permit</h3>
+         <p class="text-sm text-slate-400 mb-3">Travelling permit dari Indonesian National Police (POLRI).</p>
+         <p class="text-xs text-slate-500">Dikeluarkan oleh: POLRI</p>
+        </div>
+       </div>
+      </div><!-- Requirement 3 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-purple-400/20 text-purple-400"><i data-lucide="file-text" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Project Proposal</h3>
+         <p class="text-sm text-slate-400 mb-3">Proposal proyek kegiatan yang akan dilaksanakan di kawasan.</p>
+         <p class="text-xs text-slate-500">Format: PDF • Max: 3 MB</p>
+        </div>
+       </div>
+      </div><!-- Requirement 4 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-pink-400/20 text-pink-400"><i data-lucide="file-check" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Foreign Research Permit</h3>
+         <p class="text-sm text-slate-400 mb-3">Foreign research permit dari National Research and Innovation Agency (BRIN).</p>
+         <p class="text-xs text-slate-500">Dikeluarkan oleh: BRIN</p>
+        </div>
+       </div>
+      </div><!-- Requirement 5 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-amber-400/20 text-amber-400"><i data-lucide="file-text" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Notification Letter</h3>
+         <p class="text-sm text-slate-400 mb-3">Notification letter dari Ministry of Home Affairs (KEMENDAGRI RI).</p>
+         <p class="text-xs text-slate-500">Dikeluarkan oleh: KEMENDAGRI RI</p>
+        </div>
+       </div>
+      </div><!-- Requirement 6 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-teal-400/20 text-teal-400"><i data-lucide="file-text" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Recommendation Letter</h3>
+         <p class="text-sm text-slate-400 mb-3">Recommendation letter dari rekan kerja atau kantor terkait.</p>
+         <p class="text-xs text-slate-500">Format: PDF • Max: 3 MB</p>
+        </div>
+       </div>
+      </div><!-- Requirement 7 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-indigo-400/20 text-indigo-400"><i data-lucide="film" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Filming Permits</h3>
+         <p class="text-sm text-slate-400 mb-3">Filming permits dari Ministry of Tourism and Creative Economy (KEMENPAREKRAF RI) untuk kegiatan film/video.</p>
+         <p class="text-xs text-slate-500">Dikeluarkan oleh: KEMENPAREKRAF RI</p>
+        </div>
+       </div>
+      </div><!-- Requirement 8 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-rose-400/20 text-rose-400"><i data-lucide="file-check" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Statement Letter</h3>
+         <p class="text-sm text-slate-400 mb-3">Membaca dan menyetujui statement letter yang disediakan.</p>
+         <p class="text-xs text-slate-500"><a href="#" class="text-emerald-400 hover:text-emerald-300">↓ Download Statement Letter</a></p>
+        </div>
+       </div>
+      </div><!-- Requirement 9 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-green-400/20 text-green-400"><i data-lucide="stamp" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Stamp Duty</h3>
+         <p class="text-sm text-slate-400 mb-3">Stamp duty Rp. 10.000 sebanyak 2 (dua) lembar untuk dokumen resmi.</p>
+         <p class="text-xs text-slate-500">Jumlah: 2 lembar</p>
+        </div>
+       </div>
+      </div><!-- Requirement 10 -->
+      <div class="rounded-2xl p-6 card-glow" style="background-color: var(--color-surface);">
+       <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 bg-blue-400/20 text-blue-400"><i data-lucide="credit-card" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1">
+         <h3 class="font-semibold mb-2">Payment Non-Tax State Revenue</h3>
+         <p class="text-sm text-slate-400 mb-3">Pay Administration of Non-Tax State Revenue (PNBP) sesuai PP No. 12 Tahun 2014.</p>
+         <p class="text-xs text-slate-500">Berdasarkan: PP No. 12 Tahun 2014</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="py-12 px-4 border-t border-slate-700" style="background-color: var(--color-surface);">
+    <div class="max-w-6xl mx-auto">
+     <div class="border-t border-slate-600 pt-8">
+      <p class="text-xs text-slate-500 mb-6 text-center">Supported by:</p>
+      <div class="flex items-center justify-center gap-12 flex-wrap mb-8">
+       <div class="w-32 h-20 bg-slate-700/50 rounded-lg flex items-center justify-center p-2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Logo_Kementerian_Kehutanan_RI_%282024%29.png" alt="Kementerian Kehutanan RI" class="max-w-full max-h-full object-contain" loading="lazy" onerror="this.style.display='none';">
+       </div>
+       <div class="w-32 h-20 bg-slate-700/50 rounded-lg flex items-center justify-center p-2">
+        <img src="https://cdn.phototourl.com/uploads/2026-03-15-d7c26202-78d1-4cc7-998c-49cb391acca4.png" alt="Balai TNGR Meru Betiri" class="max-w-full max-h-full object-contain" loading="lazy" onerror="this.style.display='none';">
+       </div>
+      </div>
+      <div class="border-t border-slate-700 pt-8 space-y-6">
+       <div class="text-center">
+        <p id="footer-text" class="text-xs text-slate-500">© 2024 E-SIMAKSI Meru Betiri. Semua hak dilindungi.</p>
+       </div>
+       <div class="border-t border-slate-700 pt-6 text-center">
+        <h4 class="text-sm font-semibold mb-3">Hubungi Kami</h4>
+        <p class="text-xs text-slate-400">Email: <a href="merubetiri@gmail.com" class="text-emerald-400 hover:text-emerald-300">merubetiri@gmail.com</a></p>
+        <p class="text-xs text-slate-400">Telepon: <a href="tel:0331335535" class="text-emerald-400 hover:text-emerald-300">0331335535</a></p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    lucide.createIcons();
+    
+    const config = {
+      site_title: "E-Simaksi Meru Betiri",
+      park_name: "Meru Betiri National Park",
+      hero_tagline: "Aplikasi Perizinan Masuk Kawasan Konservasi Online (e-SIMAKSI) merupakan aplikasi layanan publik yang digunakan untuk mengajukan permohonan surat izin masuk kawasan konservasi di Meru Betiri National Park.",
+      footer_text: "© 2024 E-SIMAKSI Meru Betiri. Semua hak dilindungi."
+    };
+
+    function updateContent() {
+      document.getElementById('nav-title').textContent = config.site_title;
+      document.getElementById('hero-title').innerHTML = `E-SIMAKSI<br><span class="bg-gradient-to-r from-emerald-400 to-sky-400 bg-clip-text text-transparent">${config.park_name}</span>`;
+      document.getElementById('park-name-hero').textContent = config.park_name;
+      document.getElementById('hero-tagline').textContent = config.hero_tagline;
+      document.getElementById('footer-text').textContent = config.footer_text;
+    }
+
+    updateContent();
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig: config,
+        onConfigChange: async (newConfig) => {
+          Object.assign(config, newConfig);
+          updateContent();
+        },
+        mapToCapabilities: () => ({
+          recolorables: [],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: () => new Map([
+          ["site_title", config.site_title],
+          ["park_name", config.park_name],
+          ["hero_tagline", config.hero_tagline],
+          ["footer_text", config.footer_text]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9dc97a9a8774fd06',t:'MTc3MzU1NjMyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
